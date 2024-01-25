@@ -4,46 +4,46 @@
 
 README.md @rmgarciaex_bice
 
-## Feature Branch   
+## Feature Branch
 
 # Developers working on feature branches:
 
-/feature/* @bitbucket-ProjectKey-dev
+/feature/* @bitbucket-$ProjectKey-dev
 
 ## Develop and Release Branch
 
 # Technical Leads responsible for approval in Develop and managing changes in Release:
 
-**/develop/* @bitbucket-ProjectKey-tl
-**/release/* @bitbucket-ProjectKey-tl
+**/develop/** @bitbucket-$ProjectKey-tl
+**/release/** @bitbucket-$ProjectKey-tl
 
 ## Master Branch
 
 # Custodians responsible for approving Pull Requests to Master:
 
-**/master/* @bitbucket-custodio
+**/master/** @bitbucket-custodio
 
 ## Deployment Environments
 
 # Technical Lead responsible for viewing deployment environments:
 
-**/pipelines/* @bamboo-ProjectKey-tl
+**/pipelines/** @bamboo-$ProjectKey-tl
 
 ## Development Environment
 
 # Developer responsible for deploying in development and viewing all deployment environments:
 
-**/pipelines/develop/* @bamboo-ProjectKey-dev
+**/pipelines/develop/** @bamboo-$ProjectKey-dev
 
 ## QA Environments
 
 # QA Engineers and Functional QA responsible for deploying and viewing QA environments:
 
-**/pipelines/qa/ @bamboo-ingenieros-qa @bamboo-qa-funcional
+**/pipelines/qa/** @bamboo-ingenieros-qa @bamboo-qa-funcional
 
 ## BNK Prod Environments
 
 # BNK Prod responsible for viewing and deploying in Pre-Prod and Production environments:
 
-/pipelines/preproduction/* @bamboo-bnk-prod
-/pipelines/production/* @bamboo-bnk-prod
+/pipelines/preproduction/** @bamboo-bnk-prod
+/pipelines/production/** @bamboo-bnk-prod

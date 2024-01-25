@@ -1,0 +1,23 @@
+name: Create CODEOWNERS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Rulesetes-Protection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set protection rules on selected reposiories
+        run: |
+          owner=$(jq -r '.owner' repositories.json) && echo $owner
+          repo_names=$(jq -r '.repositories[].repo_name' repositories.json) && echo $repo_names
+          project_names=$(echo "$repo_names" | sed 's/-.*//')
+          sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
+          cat 
+
+
+
+
