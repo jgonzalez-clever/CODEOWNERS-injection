@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - id: step1
-        run: echo "::set-output name=test::['PROJECTLEGENDS-repo1', 'PROJECTMINERAL-repo2']"
+        run: echo "::set-output name=test::[$(jq -r '.repositories[].repo_name' repositories.json | sed 's/-.*//')]"
       - id: step2
         run: echo "::set-output name=test::world"
 
