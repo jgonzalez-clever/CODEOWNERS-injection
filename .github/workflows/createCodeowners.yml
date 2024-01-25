@@ -59,7 +59,7 @@ jobs:
           echo ""
           git clone https://jgonzalez-clever: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@github.com/jgonzalez-clever/update-codeowners.git
           ls
-          cp ./codeowners_template.txt update-codeowners/./github/codeowners_template.txt
+          cp ./codeowners_template.txt update-codeowners/.github/codeowners_template.txt
           cd update-codeowners
           git add .
           git commit -m "Add file from GitHub Actions"
