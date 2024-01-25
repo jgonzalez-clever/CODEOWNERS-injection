@@ -24,6 +24,7 @@ jobs:
 
   CODEOWNERS:
     runs-on: ubuntu-latest
+    needs: [Get-Repositories-To-Inject]
     strategy:
         max-parallel: 1
         # SET MATRIX WITH repositories TO MIGRATE
