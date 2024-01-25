@@ -20,7 +20,7 @@ jobs:
               "neon-captest-new",
               "neon-captest-reuse",
               "neonvm-captest-new"
-            ]}
+            ]}'
 
     job3:
       runs-on: ubuntu-latest
