@@ -16,7 +16,7 @@ jobs:
         - name: Set matrix data
           id: set-matrix
           # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
-          run: echo "REPOSITORIES={PROJECTLEGENDS-repo1, PROJECTMINERAL-repo2}" >> $GITHUB_OUTPUT
+          run: echo "REPOSITORIES=["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]" >> $GITHUB_OUTPUT
         - name: debug 
           run: |
             echo "$REPOSITORIES"
