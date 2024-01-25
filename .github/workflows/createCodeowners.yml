@@ -57,7 +57,7 @@ jobs:
           echo "${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}"
           echo "${{ steps.Get-Repositories-To-Inject.outputs.REPOSITORIES }}"
           echo ""
-          git clone https://${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}:${{ env.GH_TOKEN }}@github.com/${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}/${{ steps.Get-Repositories-To-Inject.outputs.REPOSITORIES }}.git
+          git clone https://jgonzalez-clever:${{ env.GH_TOKEN }}@github.com/jgonzalez-clever/update-codeowners.git
           ls
           cp ./codeowners_template.txt ${{ matrix.repositories }}/./github/codeowners_template.txt
           cd ${{ matrix.repositories }}
