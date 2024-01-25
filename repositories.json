@@ -3,7 +3,7 @@
 
     "repositories": [
       {
-        "repo_name": "update_codeowners"
+        "repo_name": "update-codeowners"
       }
     ]
 }
