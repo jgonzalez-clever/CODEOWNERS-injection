@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - id: step1
-        run: echo "name=$(echo '["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]' | jq -c .)" >> $GITHUB_OUTPUT
+        run: cho "name=$(jq -n --argjson arr '["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]' '$arr | join(" ")')" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "::set-output name=test::world"
 
