@@ -59,9 +59,9 @@ jobs:
           echo ""
           git clone https://jgonzalez-clever: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@github.com/jgonzalez-clever/update-codeowners.git
           ls
-          git config --global user.email "jgonzalz-clever@cleveritgroup.com"
+          git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez"
-          cp ./codeowners_template.txt update-codeowners/.github/codeowners_template.txt
+          cp ./codeowners_template.txt update-codeowners/.github/CODEOWNERS
           cd update-codeowners
           git add .
           git commit -m "Add file from GitHub Actions"
