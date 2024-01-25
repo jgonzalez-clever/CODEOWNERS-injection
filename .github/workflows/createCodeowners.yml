@@ -27,8 +27,7 @@ jobs:
     strategy:
         max-parallel: 1
         # SET MATRIX WITH repositories TO MIGRATE
-        matrix: 
-            repositories: ${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}
+        matrix:  ${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}
 
     steps:
       - uses: actions/checkout@v3
