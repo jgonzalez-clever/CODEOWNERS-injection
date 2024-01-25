@@ -16,7 +16,7 @@ jobs:
         - name: Set matrix data
           id: set-matrix
           # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
-          run: REPO=$(jq -r '.repositories[].repo_name' repositories.json) >> $GITHUB_ENV 
+          run: echo "REPO=$(jq -r '.repositories[].repo_name' repositories.json)" >> $GITHUB_OUTPUT 
 
 
   CODEOWNERS:
