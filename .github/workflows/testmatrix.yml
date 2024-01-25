@@ -15,15 +15,18 @@ jobs:
        
         - name: Set matrix data
           id: set-matrix
-          run: echo 'REPOSITORIES=["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]' >> $GITHUB_ENV
+          # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
+          run: echo "REPOSITORIES=["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]" >> "$GITHUB_OUTPUT"
 
 
   CODEOWNERS:
     runs-on: ubuntu-latest
     needs: [Get-Repositories-To-Inject]
     strategy:
+        max-parallel: 1
+        # SET MATRIX WITH repositories TO MIGRATE
         matrix: 
-            repositories: ${{fromJson(needs.Get-Repositories-To-Inject.outputs.REPOSITORIES)}}
+            repositories: [a]
 
     steps:
       - uses: actions/checkout@v3
@@ -36,4 +39,10 @@ jobs:
           sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
           cat CODEOWNERS
      
+      - name: Set 
+        run: |
+          echo "${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}"
+
+
+
 

@@ -16,7 +16,7 @@ jobs:
         - name: Set matrix data
           id: set-matrix
           # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
-          run: echo "REPOSITORIES=["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]" >> "$GITHUB_OUTPUT"
+          run: REPOSITORIES=$(jq -r '.repositories[].repo_name' repositories.json) >> $GITHUB_ENV 
 
 
   CODEOWNERS:
@@ -39,9 +39,9 @@ jobs:
           sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
           cat CODEOWNERS
      
-      - name: Set 
-        run: |
-          echo "${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}"
+      - env:
+          OUTPUT1: ${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}
+        run: echo "$OUTPUT1" 
 
 
 
