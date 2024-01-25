@@ -11,8 +11,16 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v3
+
+      - name: Read repository names from JSON
+        id: read-repositories
+        run: echo "::set-output name=repository_names::$(jq -r '.repositories[].repo_name' repositories.json | join(","))"
+
       - id: step1
-        run: echo "::set-output name=test::['PROJECTLEGENDS-repo1', 'PROJECTMINERAL-repo2']"
+        run: echo "::set-output name=test::[$(echo "${{ steps.read-repositories.outputs.repository_names }}" | sed 's/,/\", \"/g')]"
+
       - id: step2
         run: echo "::set-output name=test::world"
 
