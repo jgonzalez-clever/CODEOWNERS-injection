@@ -1,48 +1,39 @@
-name: matrix
+name: Mi Flujo
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
 jobs:
-
-  Get-Repositories-To-Inject:
+    job1:
       runs-on: ubuntu-latest
+      # Map a step output to a job output
       outputs:
-        REPOSITORIES: ${{ steps.set-matrix.outputs.REPO }}
+        output1: ${{ steps.step1.outputs.test }}
+        output2: ${{ steps.step2.outputs.test }}
       steps:
-        - name: Checkout to repository
-          uses: actions/checkout@v3
-       
-        - name: Set matrix data
-          id: set-matrix
-          # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
-          run: echo "REPOSITORIES=["PROJECTLEGENDS-repo1", "PROJECTMINERAL-repo2"]" >> "$GITHUB_OUTPUT"
+        - id: step1
+          run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        - id: step2
+          run: echo "test=world" >> "$GITHUB_OUTPUT"
+    job2:
+      runs-on: ubuntu-latest
+      needs: job1
+      steps:
+        - env:
+            OUTPUT1: ${{needs.job1.outputs.output1}}
+            OUTPUT2: ${{needs.job1.outputs.output2}}
+          run: echo "$OUTPUT1 $OUTPUT2" 
 
-
-  CODEOWNERS:
-    runs-on: ubuntu-latest
-    needs: [Get-Repositories-To-Inject]
-    strategy:
+    job3:
+      runs-on: ubuntu-latest
+      needs: job1
+      strategy:
         max-parallel: 1
         # SET MATRIX WITH repositories TO MIGRATE
         matrix: 
-            repositories: [a]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set and Create CODEOWNERS
-        run: |
-          owner=$(jq -r '.owner' repositories.json) && echo $owner
-          repo_names=${{ matrix.repositories }}
-          project_names=$(echo "$repo_names" | sed 's/-.*//')
-          sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
-          cat CODEOWNERS
-     
-      - name: Set 
-        run: |
-          echo "${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}"
-
-
-
-
+            repositories: ${{needs.job1.outputs.output1}}
+      steps:
+      - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+          OUTPUT2: ${{needs.job1.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
