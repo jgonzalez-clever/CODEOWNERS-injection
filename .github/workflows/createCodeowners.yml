@@ -4,16 +4,28 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  Get-Repositories-to-Migrate:
+    runs-on: ubuntu-latest
+    # CONFIGURE PROJECT MATRIX
+    outputs:
+      # SET repositories OUTPUT FROM SET-MATRIX STEP
+      repositories: ${{ steps.set-matrix.outputs.repositories }}
+
   Rulesetes-Protection:
     runs-on: ubuntu-latest
+    strategy:
+        max-parallel: 1
+        # SET MATRIX WITH repositories TO MIGRATE
+        matrix: ${{ fromJson(needs.Get-Repositories-to-Migrate.outputs.repositories) }}
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set protection rules on selected reposiories
+      - name: Set and Create CODEOWNERS
         run: |
           owner=$(jq -r '.owner' repositories.json) && echo $owner
-          repo_names=$(jq -r '.repositories[].repo_name' repositories.json) && echo $repo_names
+          repo_names=${{ matrix.repositories }}
           project_names=$(echo "$repo_names" | sed 's/-.*//')
           sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
           cat CODEOWNERS
