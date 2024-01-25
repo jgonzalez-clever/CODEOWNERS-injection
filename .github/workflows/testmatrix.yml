@@ -16,7 +16,7 @@ jobs:
 
       - id: step1
         run: |
-            echo "arch=['x86_64', 'aarch64']" >> $GITHUB_OUTPUT
+            echo "test=['x86_64', 'aarch64']" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "::set-output name=test::world"
 
