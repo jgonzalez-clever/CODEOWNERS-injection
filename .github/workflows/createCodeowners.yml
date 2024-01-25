@@ -4,15 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  Get-Repositories-to-Migrate:
-    runs-on: ubuntu-latest
-    # CONFIGURE PROJECT MATRIX
-    outputs:
-      # SET repositories OUTPUT FROM SET-MATRIX STEP
-      repositories: ${{ steps.set-matrix.outputs.repositories }}
-
-  Rulesetes-Protection:
+  CODEOWNERS:
     runs-on: ubuntu-latest
     strategy:
         max-parallel: 1
