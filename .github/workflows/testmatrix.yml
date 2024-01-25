@@ -1,9 +1,7 @@
 name: Add File to Another Repo
 
 on:
-  push:
-    branches:
-      - main  # ajusta según sea necesario
+    workflow_dispatch:
 
 jobs:
   add-file:
@@ -17,9 +15,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          REPO_URL="hhttps://github.com/jgonzalez-clever/update_codeowners"  # reemplaza con la URL de tu otro repositorio
+          REPO_URL="https://github.com/jgonzalez-clever/update_codeowners"  # reemplaza con la URL de tu otro repositorio
           git clone $REPO_URL other-repo
-          cp ./codeowners_template.txt ./github/codeowners_template.txt
+          cp ./codeowners_template.txt other-repo/./github/codeowners_template.txt
           cd other-repo
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
