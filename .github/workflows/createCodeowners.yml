@@ -17,6 +17,9 @@ jobs:
           id: set-matrix
           # STORE REPOSITORIES.JSON INTO REPOSITORIES VARIABLE
           run: echo "REPOSITORIES=$(jq -r '.repositories[].repo_name' repositories.json)" >> $GITHUB_OUTPUT
+        - name: debug 
+          run: |
+            echo $REPOSITORIES
 
   CODEOWNERS:
     runs-on: ubuntu-latest
