@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - id: step1
-        run: echo "::set-output name=test::[$(jq -r '.repositories[].repo_name' repositories.json | sed 's/-.*//')]"
+        run: echo "TEST_NAMES=[$(jq -r '.repositories[].repo_name' repositories.json | sed 's/-.*//')]" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "::set-output name=test::world"
 
