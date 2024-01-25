@@ -1,0 +1,36 @@
+name: BitBucket Server Migration Tool Windows
+on:
+  workflow_dispatch:
+  
+jobs:
+ 
+  Get-Repositories-to-Migrate:
+    runs-on: ubuntu-latest
+
+    # CONFIGURE PROJECT MATRIX
+    outputs:
+      # SET PROJECTS OUTPUT FROM SET-MATRIX STEP
+      PROJECTS: ${{ steps.set-matrix.outputs.PROJECTS }}
+    
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v3
+     
+      - name: Set matrix data
+        id: set-matrix
+        # STORE PROJECTS.JSON INTO PROJECTS VARIABLE
+        run: echo "PROJECTS=$(jq -c . < ./projects.json)" >> $GITHUB_OUTPUT
+        
+  Migration:
+    runs-on: ubuntu-latest
+    needs: Get-Repositories-to-Migrate
+    strategy:
+      max-parallel: 1
+      # SET MATRIX WITH PROJECTS TO MIGRATE
+      matrix: ${{ fromJson(needs.Get-Repositories-to-Migrate.outputs.PROJECTS) }}
+      
+    steps:
+      - name: Creacion de CSV
+        run: |
+          echo "working"
+ 
