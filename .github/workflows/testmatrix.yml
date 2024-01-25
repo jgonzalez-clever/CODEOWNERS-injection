@@ -15,7 +15,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          REPO_URL="https://${{ secrets.GH_TOKEN }}@github.com/jgonzalez-clever/update_codeowners"  # reemplaza con la URL de tu otro repositorio
+          REPO_URL="https://jgonzalez-clever${{ secrets.GH_TOKEN }}@github.com/jgonzalez-clever/update_codeowners"  # reemplaza con la URL de tu otro repositorio
           git clone $REPO_URL other-repo
           cp ./codeowners_template.txt other-repo/./github/codeowners_template.txt
           cd other-repo
