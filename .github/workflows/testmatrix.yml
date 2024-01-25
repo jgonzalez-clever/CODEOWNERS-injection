@@ -16,7 +16,8 @@ jobs:
 
       - id: step1
         run: |
-            echo "name={a=[{"a1":"b"}]}" >> $GITHUB_OUTPUT
+            REPO_NAMES_JSON=$(jq -c -r '.repositories | map("{a1: .repo_name}")' < ./repositories.json)
+            echo "name={a=$REPO_NAMES_JSON}" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "::set-output name=test::world"
 
