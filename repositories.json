@@ -3,10 +3,7 @@
 
     "repositories": [
       {
-        "repo_name": "PROJECTLEGENDS-repo1"
-      },
-      {
-        "repo_name": "PROJECTMINERAL-repo2"
+        "repo_name": "update_codeowners"
       }
     ]
 }
