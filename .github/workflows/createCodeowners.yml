@@ -27,7 +27,8 @@ jobs:
     strategy:
         max-parallel: 1
         # SET MATRIX WITH repositories TO MIGRATE
-        matrix:  ${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}
+        matrix: 
+            repositories: [a]
 
     steps:
       - uses: actions/checkout@v3
@@ -39,6 +40,10 @@ jobs:
           project_names=$(echo "$repo_names" | sed 's/-.*//')
           sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
           cat CODEOWNERS
+     
+      - name: Set 
+        run: |
+          echo "${{needs.Get-Repositories-To-Inject.outputs.REPOSITORIES}}"
 
 
 
