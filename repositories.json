@@ -1,12 +1,13 @@
 {
-    "owner" : "jgonzalez-clever",
-
-    "repositories": [
-      {
-        "repo_name": "PROJECTLEGENDS-repo1"
-      },
-      {
-        "repo_name": "PROJECTMINERAL-repo2"
-      }
+    "include": [
+    {
+        "project": "PROJ",
+        "migrate": [
+            {
+                "repositories": "repo1"
+            }
+        ],
+        "size": 1
+    }
     ]
 }

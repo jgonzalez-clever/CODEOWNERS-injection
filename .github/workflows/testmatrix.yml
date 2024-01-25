@@ -1,4 +1,4 @@
-name: BitBucket Server Migration Tool Windows
+name: test matrix
 on:
   workflow_dispatch:
   
