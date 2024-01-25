@@ -17,7 +17,7 @@ jobs:
       - id: step1
         run: |
             REPO_NAMES=$(jq -c -r '.repositories | map(.repo_name)' < ./repositories.json)
-            echo "name=$REPO_NAMES" >> $GITHUB_OUTPUT
+            echo "name=$REPO_NAMES" >> "$GITHUB_ENV"
       - id: step2
         run: echo "::set-output name=test::world"
 
@@ -35,7 +35,7 @@ jobs:
     needs: job1
     strategy:
       matrix:
-        repositories: ${{fromJson(needs.job1.outputs.output1)}}
+        repositories: [$REPO_NAMES]
     steps:
       - env:
           REPOSITORY: ${{ matrix.repositories }}
