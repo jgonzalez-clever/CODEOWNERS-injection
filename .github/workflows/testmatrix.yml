@@ -16,7 +16,7 @@ jobs:
 
       - id: step1
         run: |
-            echo "REPO_NAMES_JSON='{"include":[{"project":"PROJ","migrate":[{"repositories":"repo1"},{"repositories":"repo2"}]},{"project":"PROJ2","migrate":[{"repositories":"repo3"},{"repositories":"repo4"}]}]}'" >> $GITHUB_OUTPUT
+            echo "arch=['x86_64', 'aarch64']" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "::set-output name=test::world"
 
