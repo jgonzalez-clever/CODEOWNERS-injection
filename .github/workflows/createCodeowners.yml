@@ -52,12 +52,12 @@ jobs:
 
       - name: Add File to Another Repo
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           echo "${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}"
           echo "${{ steps.Get-Repositories-To-Inject.outputs.REPOSITORIES }}"
           echo ""
-          git clone https://jgonzalez-clever:${{ env.GH_PAT }}N@github.com/jgonzalez-clever/${{ matrix.repositories }}.git
+          git clone https://jgonzalez-clever:${{ env.GH_PAT }}@github.com/jgonzalez-clever/update-codeowners.git
           ls
           cp ./codeowners_template.txt ${{ matrix.repositories }}/./github/codeowners_template.txt
           cd ${{ matrix.repositories }}
