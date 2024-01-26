@@ -47,13 +47,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           OWNER: ${{ needs.Get-Repositories-To-Inject.outputs.OWNER }}
         run: |
-          owner="asd"
-          git clone https://$owner:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
+          git clone https://${{ env.OWNER }}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
           ls
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez"
           rm update-codeowners/.github/CODEOWNERS
-          cp ./codeowners_template.txt update-codeowners/.github/CODEOWNERS
+          cp ./CODEOWNERS update-codeowners/.github/CODEOWNERS
           cd update-codeowners
           git add .
           git commit -m "Add file from GitHub Actions"
