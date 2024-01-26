@@ -65,7 +65,6 @@ jobs:
           mkdir -p ${{ matrix.repositories }}/.github
           cp -f ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
           cd ${{ matrix.repositories }}
-          echo "${{ env.USER }}"
           git add .
           git commit -m "Add file from GitHub Actions"
           git push origin main  
