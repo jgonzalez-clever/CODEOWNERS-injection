@@ -51,7 +51,7 @@ jobs:
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez" 
           mkdir -p {{ matrix.repositories }}/.github
-          cp -f ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
+          cp -rf ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
           git add .
           git commit -m "Add file from GitHub Actions"
           git push origin main  
