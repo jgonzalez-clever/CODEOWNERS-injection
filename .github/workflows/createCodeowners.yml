@@ -47,7 +47,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           OWNER: ${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}
         run: |
-          echo "${{ env.OWNER }}"
+          $owner="${{ env.OWNER }}"
           git clone https://${OWNER}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
           ls
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
