@@ -45,14 +45,14 @@ jobs:
       - name: Add File to Another Repo
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          OWNER: ${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}"
         run: |
-          echo "${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}"
-          echo "${{ steps.Get-Repositories-To-Inject.outputs.REPOSITORIES }}"
-          echo ""
-          git clone https://jgonzalez-clever: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@github.com/jgonzalez-clever/update-codeowners.git
+          echo "${{ env.OWNER }}"
+          git clone https://${{ env.OWNER }}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
           ls
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez"
+          rm update-codeowners/.github/CODEOWNERS
           cp ./codeowners_template.txt update-codeowners/.github/CODEOWNERS
           cd update-codeowners
           git add .
