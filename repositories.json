@@ -4,6 +4,9 @@
     "repositories": [
       {
         "repo_name": "update-codeowners"
+      },
+      {
+        "repo_name": "repo1"
       }
     ]
 }
