@@ -9,7 +9,7 @@ jobs:
       runs-on: ubuntu-latest
       outputs:
         REPOSITORIES: ${{ steps.set-matrix.outputs.REPO }}
-        OWNER: ${{ steps.set-matrix.outputs.OW}}
+        OWNER: ${{ steps.set-owner.outputs.OW}}
       steps:
         - name: Checkout to repository
           uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
           OWNER: ${{ needs.Get-Repositories-To-Inject.outputs.OWNER }}
         run: |
           owner="asd"
-          git clone https://$OWNER:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
+          git clone https://$owner:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
           ls
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez"
