@@ -53,6 +53,7 @@ jobs:
           git config --global user.name "jgonzalez"
           cd update-codeowners 
           mkdir .github
+          ls
           cp -rf ../CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
           tree
           git add .
