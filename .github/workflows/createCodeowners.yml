@@ -10,6 +10,8 @@ jobs:
       outputs:
         REPOSITORIES: ${{ steps.set-matrix.outputs.REPO }}
         OWNER: ${{ steps.set-owner.outputs.OW}}
+        USER: ${{ steps.set-user.outputs.US}}
+        EMAIL: ${{ steps.set-email.outputs.EM }}
       steps:
         - name: Checkout to repository
           uses: actions/checkout@v3
@@ -21,6 +23,14 @@ jobs:
         - name: Set owner
           id: set-owner
           run: echo "OW=$(jq -r '.owner' repositories.json)" >> $GITHUB_OUTPUT 
+
+        - name: Set user
+          id: set-user
+          run: echo "US=$(jq -r '.owner' repositories.json)" >> $GITHUB_OUTPUT 
+
+        - name: Set email
+          id: set-email
+          run: echo "EM=$(jq -r '.owner' repositories.json)" >> $GITHUB_OUTPUT 
 
   create-CODEOWNERS:
     runs-on: ubuntu-latest
@@ -46,13 +56,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           OWNER: ${{ needs.Get-Repositories-To-Inject.outputs.OWNER }}
+          USER: ${{ needs.Get-Repositories-To-Inject.outputs.USER }}
+          EMAIL: ${{ needs.Get-Repositories-To-Inject.outputs.EMAIL }}
         run: |
-          git clone https://${{ env.OWNER }}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
-          git config --global user.email "jgonzalez-clever@cleveritgroup.com"
-          git config --global user.name "jgonzalez" 
+          git clone https://${{ env.USER }}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
+          git config --global user.email "${{ env.EMAIL }}"
+          git config --global user.name "${{ env.USER }}" 
           mkdir -p ${{ matrix.repositories }}/.github
           cp -f ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
           cd ${{ matrix.repositories }}
+          echo "${{ env.USER }}"
           git add .
           git commit -m "Add file from GitHub Actions"
           git push origin main  
