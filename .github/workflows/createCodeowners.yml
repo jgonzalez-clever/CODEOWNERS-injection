@@ -53,7 +53,7 @@ jobs:
           git config --global user.name "jgonzalez"
           cd update-codeowners 
           mkdir .github
-          cp -rf ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
+          cp -rf ../CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
           tree
           git add .
           git commit -m "Add file from GitHub Actions"
