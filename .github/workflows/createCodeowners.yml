@@ -51,8 +51,8 @@ jobs:
           ls
           git config --global user.email "jgonzalez-clever@cleveritgroup.com"
           git config --global user.name "jgonzalez"
-          rm update-codeowners/.github/CODEOWNERS
-          cp ./CODEOWNERS update-codeowners/.github/CODEOWNERS
+          cp ./CODEOWNERS ${{ matrix.repositories }}/.github/CODEOWNERS
+          tree
           cd update-codeowners
           git add .
           git commit -m "Add file from GitHub Actions"
