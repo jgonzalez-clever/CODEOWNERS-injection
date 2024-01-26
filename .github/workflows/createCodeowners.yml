@@ -20,7 +20,7 @@ jobs:
 
         - name: Set owner
           id: set-owner
-          run: echo "ow=$(jq -r '.owner' repositories.json)" >> $GITHUB_OUTPUT 
+          run: echo "OW=$(jq -r '.owner' repositories.json)" >> $GITHUB_OUTPUT 
 
   create-CODEOWNERS:
     runs-on: ubuntu-latest
