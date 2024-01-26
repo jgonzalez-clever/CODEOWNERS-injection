@@ -45,7 +45,7 @@ jobs:
       - name: Add File to Another Repo
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
-          OWNER: ${{ steps.Get-Repositories-To-Inject.outputs.OWNER }}
+          OWNER: ${{ needs.Get-Repositories-To-Inject.outputs.OWNER }}
         run: |
           $owner="asd"
           git clone https://$OWNER:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
