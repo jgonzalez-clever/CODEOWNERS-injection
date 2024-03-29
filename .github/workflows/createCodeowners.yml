@@ -34,8 +34,4 @@ jobs:
 
 
 
-          git commit -m "Add file from GitHub Actions"
-          git push origin main  
-
-
 
