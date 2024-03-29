@@ -52,20 +52,7 @@ jobs:
           sed "s/\$ProjectKey/$project_names/g" codeowners_template.txt > CODEOWNERS
           cat CODEOWNERS
 
-      - name: Add File to Another Repo
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          OWNER: ${{ needs.Get-Repositories-To-Inject.outputs.OWNER }}
-          USER: ${{ needs.Get-Repositories-To-Inject.outputs.USER }}
-          EMAIL: ${{ needs.Get-Repositories-To-Inject.outputs.EMAIL }}
-        run: |
-          git clone https://${{ env.USER }}:${{ env.GH_TOKEN }}@github.com/${{ env.OWNER }}/${{ matrix.repositories }}.git
-          git config --global user.email "${{ env.EMAIL }}"
-          git config --global user.name "${{ env.USER }}" 
-          mkdir -p ${{ matrix.repositories }}/.github
-          cp -f ./CODEOWNERS ./${{ matrix.repositories }}/.github/CODEOWNERS
-          cd ${{ matrix.repositories }}
-          git add .
+
           git commit -m "Add file from GitHub Actions"
           git push origin main  
 
