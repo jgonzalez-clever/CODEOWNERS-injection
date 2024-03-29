@@ -1,9 +1,9 @@
-{
+
     "owner" : "jgonzalez-clever",
     "user" : "jgonzalez-clever",
     "email" : "julian.gonzalez@cleveritgroup.com",
 
-    "repositories": [
+    "repositories": [ 
       {
         "repo_name": "PROJUPDATE-codeowners"
       },
